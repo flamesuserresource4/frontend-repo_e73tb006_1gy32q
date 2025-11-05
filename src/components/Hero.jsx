@@ -20,12 +20,13 @@ const Hero = () => {
 
   return (
     <section id="hero" ref={heroRef} className="relative min-h-screen w-full overflow-hidden bg-slate-950">
-      {/* Spline 3D scene */}
+      {/* Spline 3D scene (full cover) */}
       <div className="absolute inset-0 z-0">
         <Spline
-          scene="https://prod.spline.design/l5x0m9jzPz3zF2m3/scene.splinecode"
+          scene="https://prod.spline.design/Qe6dlWJktclXcUBS/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
-          className="pointer-events-auto"/>
+          className="pointer-events-auto"
+        />
       </div>
 
       {/* Gradient overlays (do not block scene) */}
