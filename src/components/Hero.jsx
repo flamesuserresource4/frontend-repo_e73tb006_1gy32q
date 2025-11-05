@@ -32,6 +32,21 @@ const Hero = () => {
         </ErrorBoundary>
       </div>
 
+      {/* Starfield parallax layer over Spline but under content */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-10"
+        style={{
+          backgroundImage:
+            'radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.8), transparent 60%),\n             radial-gradient(1px 1px at 130px 80px, rgba(168, 234, 255, 0.8), transparent 60%),\n             radial-gradient(1.5px 1.5px at 70px 120px, rgba(199, 146, 234, 0.8), transparent 60%),\n             radial-gradient(1px 1px at 200px 200px, rgba(255,255,255,0.8), transparent 60%),\n             radial-gradient(1px 1px at 320px 160px, rgba(168, 234, 255, 0.8), transparent 60%)',
+          backgroundRepeat: 'repeat',
+          backgroundSize: '400px 400px',
+          opacity: 0.7,
+        }}
+        animate={{ backgroundPositionY: ['0px', '400px'] }}
+        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+      />
+
       {/* Gradient overlays (do not block scene) */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(60%_60%_at_50%_10%,rgba(99,102,241,0.25),transparent)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-10 bg-gradient-to-t from-slate-950 to-transparent" />
@@ -88,10 +103,10 @@ const Hero = () => {
             Décoller maintenant
           </a>
           <a
-            href="#team"
+            href="#contact"
             className="px-6 py-3 rounded-md border border-white/20 text-white/90 hover:text-white bg-white/5 hover:bg-white/10 transition"
           >
-            Rencontrer l’équipage
+            Nous contacter
           </a>
         </motion.div>
       </div>
