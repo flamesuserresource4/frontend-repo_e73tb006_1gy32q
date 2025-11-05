@@ -1,47 +1,70 @@
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Shield, Satellite, Gauge } from 'lucide-react';
 
-const planets = [
-  { name: 'Mercure', color: 'from-orange-200 to-amber-500', desc: 'La plus proche du Soleil, rapide et brûlante.' },
-  { name: 'Vénus', color: 'from-yellow-200 to-yellow-500', desc: 'Brille intensément, enveloppée d’un épais manteau.' },
-  { name: 'Terre', color: 'from-sky-300 to-emerald-500', desc: 'Notre oasis bleue dans l’immensité.' },
-  { name: 'Mars', color: 'from-red-300 to-red-600', desc: 'Le désert rouge des explorateurs.' },
-  { name: 'Jupiter', color: 'from-amber-200 to-orange-700', desc: 'Géante gazeuse aux tempêtes colossales.' },
-  { name: 'Saturne', color: 'from-yellow-200 to-amber-400', desc: 'Ses anneaux éclairent la nuit cosmique.' },
-  { name: 'Uranus', color: 'from-cyan-200 to-blue-400', desc: 'Mystérieuse, couchée sur le côté.' },
-  { name: 'Neptune', color: 'from-blue-300 to-indigo-700', desc: 'Vents furieux aux confins du système.' },
+const features = [
+  {
+    title: 'Navigation quantique',
+    desc: 'Itinéraires optimisés via calculs probabilistes et champs gravitationnels.',
+    icon: Gauge,
+  },
+  {
+    title: 'Réseau satellitaire',
+    desc: 'Couverture interstellaire faible latence pour une télémétrie fiable.',
+    icon: Satellite,
+  },
+  {
+    title: 'Boucliers adaptatifs',
+    desc: 'Protection dynamique contre radiations et micro-météorites.',
+    icon: Shield,
+  },
 ];
 
-export default function Mission() {
+const Mission = () => {
   return (
-    <section id="mission" className="relative w-full py-24 sm:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.15),transparent_60%)]" />
+    <section id="mission" className="relative py-24 bg-slate-950">
       <div className="mx-auto max-w-7xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-10 text-center text-3xl font-bold tracking-tight text-white md:text-5xl"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-5xl font-bold text-white mb-8"
         >
-          Notre mission stellaire
+          Notre mission
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="text-slate-300 max-w-2xl mb-12"
+        >
+          Relier les mondes en proposant une plateforme d’exploration rapide, sûre et élégante. Chaque détail a été pensé pour une immersion totale.
+        </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {planets.map((p, i) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map(({ title, desc, icon: Icon }, idx) => (
             <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 30, rotate: -2 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              key={title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <div className={`mx-auto mb-4 h-20 w-20 rounded-full bg-gradient-to-br ${p.color} shadow-[0_0_40px_rgba(56,189,248,0.25)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`} />
-              <h3 className="mb-2 text-lg font-semibold text-white">{p.name}</h3>
-              <p className="text-sm text-white/70">{p.desc}</p>
-              <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-400/20 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              transition={{ delay: idx * 0.05, duration: 0.5 }}
+              className="group relative rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition overflow-hidden"
+            >
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl" />
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-violet-600 text-white">
+                <Icon size={18} />
+              </div>
+              <h3 className="text-white font-semibold mb-2">{title}</h3>
+              <p className="text-slate-300 text-sm">{desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Mission;
